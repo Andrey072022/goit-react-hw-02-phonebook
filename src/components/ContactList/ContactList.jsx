@@ -6,8 +6,8 @@ import stylesApp from '../../components/App.module.css';
 export const ContactList = ({ contacts, handleDelete } = this.props) => {
   return (
     <div className={styles.listAbonent}>
-      {contacts.map(({ name, number, id }, index) => (
-        <li className={styles.item_contact} key={index}>
+      {contacts.map(({ name, number, id }) => (
+        <li className={styles.item_contact} key={id}>
           <div className={styles.text_contact}>
             <span>{name} </span>
             <span className={styles.accent_text}>{number}</span>
@@ -15,6 +15,8 @@ export const ContactList = ({ contacts, handleDelete } = this.props) => {
           <button
             type="button"
             className={stylesApp.btn}
+            name="delete"
+            value={id}
             onClick={() => handleDelete(id)}
           >
             delete
