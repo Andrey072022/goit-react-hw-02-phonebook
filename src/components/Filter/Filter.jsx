@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './Filter.module.css';
 import stylesApp from '../../components/App.module.css';
 import PropTypes from 'prop-types';
 
-class Filter extends Component {
-  render() {
-    const { value, onChange } = this.props;
-    return (
-      <div className={styles.filter_wrapper}>
+export const Filter = ({ value, onChange } = this.props) => {
+  return (
+          <div className={styles.filter_wrapper}>
         <label className={stylesApp.label_input}>
           Filter
           <input
@@ -20,7 +18,6 @@ class Filter extends Component {
       </div>
     );
   }
-}
 export default Filter;
 
 Filter.propTypes = {

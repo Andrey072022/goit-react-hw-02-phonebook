@@ -4,17 +4,27 @@ import styles from './ContactForm.module.css';
 import stylesApp from '../../components/App.module.css';
 
 class ContactForm extends Component {
+  state = {
+    name: '',
+    number: '',
+  };
+
+   handleInputChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
-    const name = e.target.elements.name.value;
-    const number = e.target.elements.number.value;
-
-    this.props.onSubmit({ name, number });
-    e.target.elements.name.value = '';
-    e.target.elements.number.value = '';
+    this.props.onSubmit(this.state);
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
+    const { name, number } = this.state;
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <label htmlFor="name" className={stylesApp.label_input}>
@@ -23,6 +33,8 @@ class ContactForm extends Component {
             className={stylesApp.field}
             type="text"
             name="name"
+            value={name}
+            onChange={this.handleInputChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -34,6 +46,8 @@ class ContactForm extends Component {
             className={stylesApp.field}
             type="tel"
             name="number"
+            value={number}
+            onChange={this.handleInputChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required

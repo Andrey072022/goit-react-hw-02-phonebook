@@ -16,7 +16,7 @@ class App extends Component {
     ],
     filter: '',
   };
-  AddContact = ({ name, number }) => {
+  addContact = ({ name, number }) => {
     const normoliseName = name.toLowerCase();
     const contactFind = this.state.contacts.find(
       contact =>
@@ -55,7 +55,7 @@ class App extends Component {
     return (
       <div className={styles.contacts}>
         <h1>Phone book</h1>
-        <ContactForm onSubmit={this.AddContact}></ContactForm>
+        <ContactForm onSubmit={this.addContact}></ContactForm>
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter}></Filter>
         {contacts.length > 0 && (
